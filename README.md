@@ -1,56 +1,117 @@
-#city cafe SCORECARD -using sql 
-![Company Logo](https://github.com/najirh/Monday-Coffee-Expansion-Project-P8/blob/main/1.png)
+# City Cafe Expansion Scorecard (SQL Project)
+SQL-based scorecard that turns raw, scattered sales and city data into clean metrics, business-ready insights, and a repeatable framework to decide the **top Indian cities for opening new City Cafe outlets**.
 
-## Objective
-The goal of this project is to analyze the sales data of city cafe, a company that has been selling its products online since 2023, and to recommend the top three major cities in India for opening new coffee shop locations based on consumer demand and sales performance.
+---
 
-## Key Questions
-1. **Coffee Consumers Count**  
-   How many people in each city are estimated to consume coffee, given that 25% of the population does?
+## Project Positioning
+- **Unmanageable data → clean metrics**: Started with flat CSVs (cities, customers, products, sales) and built a relational schema plus validated metrics in SQL.
+- **Clean metrics → business insight**: Designed a scorecard that connects revenue, rent efficiency, population, and coffee consumption to rank cities.
+- **Business insight → automation**: Structured queries and views that can be plugged into a dashboard or scheduled refresh for ongoing expansion decisions.
 
-2. **Total Revenue from Coffee Sales**  
-   What is the total revenue generated from coffee sales across all cities in the last quarter of 2023?
+This project shows how I use SQL to move from messy data to a **repeatable decision engine** for location strategy.
 
-3. **Sales Count for Each Product**  
-   How many units of each coffee product have been sold?
+---
 
-4. **Average Sales Amount per City**  
-   What is the average sales amount per customer in each city?
+## Problem Statement
+City Cafe is an online coffee brand (since 2023) exploring **which Indian cities should get new physical outlets first**. Leadership wants:
 
-5. **City Population and Coffee Consumers**  
-   Provide a list of cities along with their populations and estimated coffee consumers.
+- A **data-backed ranking** of cities instead of gut feeling.
+- A view of **demand, spending power, and rent efficiency** together.
+- A scalable way to **re-run the analysis** as new data comes in.
 
-6. **Top Selling Products by City**  
-   What are the top 3 selling products in each city based on sales volume?
+The question: **Which top 3 cities offer the best market potential for new City Cafe stores?**
 
-7. **Customer Segmentation by City**  
-   How many unique customers are there in each city who have purchased coffee products?
+---
 
-8. **Average Sale vs Rent**  
-   Find each city and their average sale per customer and avg rent per customer
+## My Solution (Tech + Approach)
+**Tech stack**
+- SQL (relational modeling, joins, aggregations, window functions).
+- Source files: `city.csv`, `customers.csv`, `products.csv`, `sales.csv`.
+- Core logic implemented in: `Schemas.sql` (data model) and `Solutions.sql` (business logic queries).
 
-9. **Monthly Sales Growth**  
-   Sales growth rate: Calculate the percentage growth (or decline) in sales over different time periods (monthly).
+**Approach**
+1. **Model the data**  
+   - Designed tables for cities, customers, products, and sales.  
+   - Linked them via keys so every sale can be traced to a city, customer, and product.
 
-10. **Market Potential Analysis**  
-    Identify top 3 city based on highest sales, return city name, total sale, total rent, total customers, estimated  coffee consumer
-    
+2. **Clean and standardize metrics**  
+   - Derived consistent units for revenue, rent, and per-customer KPIs.  
+   - Estimated coffee consumers per city (assuming 25% of population consumes coffee).
 
-## Recommendations
-After analyzing the data, the recommended top three cities for new store openings are:
+3. **Build the scorecard in SQL**  
+   - Wrote queries to compute city-level metrics: total revenue, total customers, estimated coffee consumers, rent per customer, and average sale per customer.  
+   - Calculated monthly sales trends to capture growth and stability.
 
-**City 1: Pune**  
-1. Average rent per customer is very low.  
-2. Highest total revenue.  
-3. Average sales per customer is also high.
+4. **Rank cities for expansion**  
+   - Combined demand (customers, coffee consumers), revenue, and rent efficiency.  
+   - Recommended the **top 3 cities** with the strongest overall profile.
 
-**City 2: Delhi**  
-1. Highest estimated coffee consumers at 7.7 million.  
-2. Highest total number of customers, which is 68.  
-3. Average rent per customer is 330 (still under 500).
+5. **Prepare for automation**  
+   - Organized logic into reusable SQL scripts that can be turned into **views, stored procedures, or scheduled jobs** in a production database / BI stack.
 
-**City 3: Jaipur**  
-1. Highest number of customers, which is 69.  
-2. Average rent per customer is very low at 156.  
-3. Average sales per customer is better at 11.6k.
+---
 
+## Business Questions Answered
+1. **Coffee consumption potential**  
+   - How many people in each city likely consume coffee (assuming 25% of population)?
+
+2. **Revenue performance**  
+   - What is the total revenue from coffee sales across all cities in Q4 2023?
+
+3. **Product performance**  
+   - How many units of each product were sold, and which products lead by volume and value?
+
+4. **Customer value by city**  
+   - What is the average sales amount per customer in each city?
+
+5. **City profile**  
+   - What are each city’s population, estimated coffee consumers, and number of unique customers?
+
+6. **Top-selling products by city**  
+   - What are the top 3 selling products in each city?
+
+7. **Sales vs. rent efficiency**  
+   - What is the average sale per customer vs. average rent per customer for each city?
+
+8. **Growth over time**  
+   - How is sales performance changing month over month (growth / decline)?
+
+9. **Market potential & ranking**  
+   - Which **top 3 cities** stand out when we consider sales, rent, customers, and estimated coffee consumers together?
+
+---
+
+## Key Insights & Recommendations
+Based on the scorecard, the **top 3 recommended cities** for new City Cafe outlets are:
+
+**1. Pune**  
+- Very low average rent per customer.  
+- Highest total revenue.  
+- Strong average sales per customer.
+
+**2. Delhi**  
+- Highest estimated coffee consumers (~7.7 million).  
+- Very high total number of customers (68).  
+- Reasonable average rent per customer (~330, under 500).
+
+**3. Jaipur**  
+- Highest number of customers (69).  
+- Very low average rent per customer (~156).  
+- Healthy average sales per customer (~11.6k).
+
+These cities balance **demand, revenue, and cost efficiency**, making them strong early bets for physical expansion.
+
+---
+
+## From Analysis to Automation
+This project is structured so it can be easily scaled:
+
+- Turn the core queries into **database views** for dashboards.  
+- Wrap logic into **stored procedures** to refresh the scorecard on new data.  
+- Connect to BI tools (Power BI, Tableau, etc.) to give leadership a live **expansion decision dashboard**.
+
+---
+
+## Author
+Project by **Aanya Mittal** .  
+Portfolio: [aanxiee.com](https://www.aanxiee.com/)
